@@ -15,9 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bermusoft.favtracks.R;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.bermusoft.favtracks.controller.HttpManager;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -47,7 +45,7 @@ public class AddTrackActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_track);
 
         SharedPreferences prefs = getSharedPreferences("favtracksPrefs", MODE_PRIVATE);
-        user = prefs.getString("user", "anonimo");
+        user = prefs.getString("username", "anonimo");
 
         trackName = (EditText) findViewById(R.id.nameEditText);
         trackAlbum = (EditText) findViewById(R.id.albumEditText);
@@ -74,7 +72,7 @@ public class AddTrackActivity extends AppCompatActivity {
                 String year =  trackYear.getText().toString();
                 String language =  trackLanguage.getText().toString();
                 String rhythm = String.valueOf(trackRhythm.getSelectedItemPosition());
-                String rating = String.valueOf(trackRating.getRating());
+                String rating = String.valueOf(Math.round(trackRating.getRating()));
 
                 new addTrackAsyncTask().execute(name, album, interpreter, year, language, rhythm, rating, user);
             }
@@ -101,17 +99,7 @@ public class AddTrackActivity extends AppCompatActivity {
                 Log.e(LOG_TAG, uriBuilder.toString());
 
                 URL url = new URL(uriBuilder.toString());
-                conn = (HttpsURLConnection) url.openConnection();
-                conn.setConnectTimeout(5000);
-                conn.setRequestMethod("POST");
-                conn.connect();
-
-                int responseCode = conn.getResponseCode();
-                if (responseCode != HttpsURLConnection.HTTP_OK) {
-                    throw new IOException("HTTP error code: " + responseCode);
-                } else {
-                    return "success";
-                }
+                return HttpManager.makeHttpPostRequest(url);
 
             } catch (MalformedURLException e) {
                 Log.e("BAD URL", e.getMessage());

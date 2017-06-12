@@ -8,8 +8,9 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,11 +34,14 @@ public class ListaCancionesActivity extends AppCompatActivity implements LoaderM
 
     private String interpreter;
     private int rhythm;
-    private float rating;
+    private int rating;
 
     private TrackAdapter adapter;
 
     private TextView emptyListTextView;
+
+    private FloatingActionButton fabAddTrack;
+    private LoaderManager loaderManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +50,17 @@ public class ListaCancionesActivity extends AppCompatActivity implements LoaderM
 
         interpreter = getIntent().getStringExtra("interpreter");
         rhythm = getIntent().getIntExtra("rhythm", -1);
-        rating = getIntent().getFloatExtra("rating", -1f);
+        rating = getIntent().getIntExtra("rating", -1);
 
         emptyListTextView = (TextView) findViewById(R.id.emptyListTextView);
+        fabAddTrack = (FloatingActionButton) findViewById(R.id.fabAddTrackButton);
+        fabAddTrack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListaCancionesActivity.this, AddTrackActivity.class);
+                startActivity(intent);
+            }
+        });
 
         adapter = new TrackAdapter(this, new ArrayList<Track>());
 
@@ -59,8 +71,16 @@ public class ListaCancionesActivity extends AppCompatActivity implements LoaderM
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Track track = (Track) parent.getItemAtPosition(position);
                 Intent intent = new Intent(ListaCancionesActivity.this, DetalleCancionActivity.class);
-                //intent.putExtra();
+                intent.putExtra("name", track.getTrackName());
+                intent.putExtra("album", track.getTrackAlbum());
+                intent.putExtra("interpreter", track.getTrackInterpreter());
+                intent.putExtra("year", track.getTrackYear());
+                intent.putExtra("language", track.getTrackLanguage());
+                intent.putExtra("rhythm", track.getTrackRhythm());
+                intent.putExtra("rating", track.getTrackRating());
+                intent.putExtra("user", track.getTrackUser());
                 startActivity(intent);
             }
         });
@@ -72,7 +92,7 @@ public class ListaCancionesActivity extends AppCompatActivity implements LoaderM
         // If there is a network connection, fetch data
         if (networkInfo != null && networkInfo.isConnected()) {
             // Get a reference to the LoaderManager, in order to interact with loaders.
-            LoaderManager loaderManager = getLoaderManager();
+            loaderManager = getLoaderManager();
 
             // Initialize the loader. Pass in the int ID constant defined above and pass in null for
             // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
@@ -87,6 +107,12 @@ public class ListaCancionesActivity extends AppCompatActivity implements LoaderM
             // Update empty state with no connection error message
             emptyListTextView.setText(R.string.no_internet_connection);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loaderManager.restartLoader(TRACK_LOADER_ID, null, this);
     }
 
     @Override
@@ -106,6 +132,7 @@ public class ListaCancionesActivity extends AppCompatActivity implements LoaderM
                 SharedPreferences prefs = getSharedPreferences("favtracksPrefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.clear().apply();
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);

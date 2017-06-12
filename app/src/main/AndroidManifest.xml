@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.bermusoft.favtracks">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
@@ -35,8 +36,8 @@
         </activity>
         <activity
             android:name=".ui.AddTrackActivity"
-            android:label="@string/tracks_list_activity"
-            android:parentActivityName=".ui.LoginActivity"
+            android:label="@string/add_track_activity"
+            android:parentActivityName=".ui.ListaCancionesActivity"
             tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

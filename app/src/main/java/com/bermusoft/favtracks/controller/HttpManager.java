@@ -67,7 +67,7 @@ public class HttpManager {
     /**
      * Make an HTTP request to the given URL and return a String as the response.
      */
-    private static String makeHttpRequest(URL url) throws IOException {
+    public static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
 
         // If the URL is null, then return early.
@@ -112,7 +112,7 @@ public class HttpManager {
         InputStream inputStream = null;
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000 /* milliseconds */);
+            urlConnection.setReadTimeout(15000 /* milliseconds */);
             urlConnection.setConnectTimeout(15000 /* milliseconds */);
             urlConnection.setRequestMethod("POST");
             urlConnection.connect();
@@ -170,28 +170,29 @@ public class HttpManager {
             JSONObject baseJsonResponse = new JSONObject(earthquakeJSON);
             JSONArray trackArray = baseJsonResponse.getJSONArray("tracks");
 
+            //Log.e(LOG_TAG, baseJsonResponse.toString());
+            //Log.e(LOG_TAG, trackArray.toString());
 
             for (int i = 0; i < trackArray.length(); i++) {
 
                 JSONObject currentTrack = trackArray.getJSONObject(i);
 
-                String name = currentTrack.getString("name");
+                String name = currentTrack.getString("track_name");
                 String album = currentTrack.getString("album");
-                String year = currentTrack.getString("year");
+                String year = currentTrack.getString("release_year");
                 String interpreter = currentTrack.getString("interpreter");
-                String language = currentTrack.getString("language");
+                String language = currentTrack.getString("track_language");
                 String user = currentTrack.getString("user");
 
                 int rhythm = currentTrack.getInt("rhythm");
-
-                float rating = (float) currentTrack.get("rating");
+                int rating = currentTrack.getInt("rating");
 
                 Track track = new Track(name, album, interpreter, year, language, user, rhythm, rating);
                 tracks.add(track);
             }
 
         } catch (JSONException e) {
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the tracks JSON results", e);
         }
         return tracks;
     }
