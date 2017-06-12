@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin"
+    tools:context="com.bermusoft.favtracks.ui.AddTrackActivity">
+
+     <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="@dimen/text_fields_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:inputType="textCapSentences"/>
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/text_view_height"
+        android:layout_alignBaseline="@id/nameEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/nameEditText"
+        android:layout_toLeftOf="@id/nameEditText"
+        android:text="@string/name"
+        android:textSize="@dimen/text_view_size"/>
+
+    <EditText
+        android:id="@+id/albumEditText"
+        android:layout_width="@dimen/text_fields_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameEditText"
+        android:layout_alignEnd="@id/nameEditText"
+        android:layout_alignRight="@id/nameEditText"
+        android:inputType="textCapSentences"/>
+
+    <TextView
+        android:id="@+id/albumTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/text_view_height"
+        android:layout_below="@id/nameTextView"
+        android:layout_alignBaseline="@id/albumEditText"
+        android:text="@string/album"
+        android:textSize="@dimen/text_view_size"/>
+
+    <EditText
+        android:id="@+id/interpreterEditText"
+        android:layout_width="@dimen/text_fields_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/albumEditText"
+        android:layout_alignEnd="@id/nameEditText"
+        android:layout_alignRight="@id/nameEditText"
+        android:inputType="textCapSentences"/>
+
+    <TextView
+        android:id="@+id/interpreterTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/interpreterEditText"
+        android:text="@string/interpreter"
+        android:textSize="@dimen/text_view_size"/>
+
+    <EditText
+        android:id="@+id/yearEditText"
+        android:layout_width="@dimen/text_fields_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/interpreterEditText"
+        android:layout_alignEnd="@id/nameEditText"
+        android:layout_alignRight="@id/nameEditText"
+        android:inputType="number"
+        android:maxLength="4"/>
+
+    <TextView
+        android:id="@+id/yearTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/yearEditText"
+        android:text="@string/year"
+        android:textSize="@dimen/text_view_size"/>
+
+    <EditText
+        android:id="@+id/languageEditText"
+        android:layout_width="@dimen/text_fields_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/yearEditText"
+        android:layout_alignEnd="@id/nameEditText"
+        android:layout_alignRight="@id/nameEditText"
+        android:inputType="textCapSentences"/>
+
+    <TextView
+        android:id="@+id/languageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/languageEditText"
+        android:text="@string/language"
+        android:textSize="@dimen/text_view_size"/>
+
+    <Spinner
+        android:id="@+id/rhythmSpinner"
+        android:layout_width="@dimen/text_fields_width"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/languageEditText"
+        android:layout_alignEnd="@id/nameEditText"
+        android:layout_alignRight="@id/nameEditText"/>
+
+    <TextView
+        android:id="@+id/rhythmTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rhythm"
+        android:textSize="@dimen/text_view_size"
+        android:layout_below="@+id/languageEditText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rhythmSpinner"
+        android:layout_alignEnd="@id/nameEditText"
+        android:layout_alignRight="@id/nameEditText"/>
+
+    <TextView
+        android:id="@+id/ratingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rating"
+        android:textSize="@dimen/text_view_size"
+        android:layout_alignBottom="@+id/ratingBar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="15dp" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ratingBar"
+        android:layout_centerHorizontal="true"
+        android:text="@string/add"
+        android:textSize="@dimen/text_view_size"/>
+</RelativeLayout>

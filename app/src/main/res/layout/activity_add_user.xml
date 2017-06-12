@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context="com.bermusoft.favtracks.ui.AddUserActivity">
+
+    <TextView
+        android:id="@+id/appNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_account_head"
+        android:textAlignment="center"
+        android:textSize="@dimen/text_view_appname_size"/>
+
+    <EditText
+        android:id="@+id/usernameEditText"
+        android:layout_width="@dimen/text_fields_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:maxLines="1"
+        android:inputType="textWebEditText"
+        android:hint="@string/prompt_username"/>
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="@dimen/text_fields_width"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:hint="@string/prompt_password"/>
+
+    <Button
+        android:id="@+id/addUserButton"
+        android:layout_width="@dimen/text_fields_width"
+        android:layout_height="wrap_content"
+        android:text="@string/action_register"/>
+</LinearLayout>
