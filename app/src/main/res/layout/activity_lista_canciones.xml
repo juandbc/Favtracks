@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/activity_vertical_margin"
-    tools:context="com.bermusoft.favtracks.ui.ListaCancionesActivity">
+    tools:context="com.bermusoft.favtracks.ui.TracksListActivity">
 
     <ListView
         android:id="@+id/tracksList"
@@ -22,7 +22,8 @@
     <ProgressBar
         android:id="@+id/loading_indicator"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabAddTrackButton"
@@ -31,7 +32,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:src="@android:drawable/ic_menu_add"
+        android:src="@drawable/ic_add_white_24dp"
         android:scaleType="fitCenter" />
 </RelativeLayout>
 

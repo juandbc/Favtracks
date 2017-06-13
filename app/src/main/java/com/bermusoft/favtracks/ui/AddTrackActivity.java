@@ -6,9 +6,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
@@ -54,7 +54,6 @@ public class AddTrackActivity extends AppCompatActivity {
         trackLanguage = (EditText) findViewById(R.id.languageEditText);
         trackRhythm = (Spinner) findViewById(R.id.rhythmSpinner);
         trackRating = (RatingBar) findViewById(R.id.ratingBar);
-        Button addTrackButton = (Button) findViewById(R.id.addButton);
 
         ArrayAdapter<CharSequence> rhythmAdapter = ArrayAdapter.createFromResource(this, R.array.rhythm_list,
                 android.R.layout.simple_spinner_dropdown_item);
@@ -62,10 +61,18 @@ public class AddTrackActivity extends AppCompatActivity {
 
         trackRating.setMax(5);
         trackRating.setRating(3.5f);
+    }
 
-        addTrackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.add_track_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.addTrackMenu:
                 String name =  trackName.getText().toString();
                 String album =  trackAlbum.getText().toString();
                 String interpreter =  trackInterpreter.getText().toString();
@@ -75,8 +82,9 @@ public class AddTrackActivity extends AppCompatActivity {
                 String rating = String.valueOf(Math.round(trackRating.getRating()));
 
                 new addTrackAsyncTask().execute(name, album, interpreter, year, language, rhythm, rating, user);
-            }
-        });
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private class addTrackAsyncTask extends AsyncTask<String, Void, String> {

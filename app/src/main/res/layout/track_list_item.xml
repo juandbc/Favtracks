@@ -9,34 +9,23 @@
         android:id="@+id/trackNameItemTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
         tool:text="Paris"/>
-
-    <TextView
-        android:id="@+id/usernameItemTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/trackNameItemTextView"
-        tool:text="Agredada por Noob"/>
 
     <TextView
         android:id="@+id/interpreterItemTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@id/trackNameItemTextView"
-        android:layout_toRightOf="@id/trackNameItemTextView"
-        android:layout_alignBaseline="@id/trackNameItemTextView"
-        tool:text="por Deadmau5"/>
+        android:layout_below="@id/trackNameItemTextView"
+        tool:text="por Deadmau5" />
 
-    <RatingBar
-        android:id="@+id/ratingItemBar"
+    <TextView
+        android:id="@+id/rhythmItemTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        style="?android:attr/ratingBarStyleSmall"/>
+        android:layout_centerVertical="true" />
 </RelativeLayout>

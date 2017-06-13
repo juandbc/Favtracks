@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Spinner;
@@ -41,12 +39,11 @@ public class DetalleCancionActivity extends AppCompatActivity {
         trackLanguage = (EditText) findViewById(R.id.languageEditText);
         trackRhythm = (Spinner) findViewById(R.id.rhythmSpinner);
         trackRating = (RatingBar) findViewById(R.id.ratingBar);
-        Button addTrackButton = (Button) findViewById(R.id.addButton);
-        addTrackButton.setVisibility(View.GONE);
 
         ArrayAdapter<CharSequence> rhythmAdapter = ArrayAdapter.createFromResource(this, R.array.rhythm_list,
                 android.R.layout.simple_spinner_dropdown_item);
         trackRhythm.setAdapter(rhythmAdapter);
+
         trackRating.setMax(5);
         trackRating.setRating(intent.getFloatExtra("rating", 3f));
 
@@ -56,5 +53,12 @@ public class DetalleCancionActivity extends AppCompatActivity {
         trackYear.setText(intent.getStringExtra("year"));
         trackLanguage.setText(intent.getStringExtra("language"));
         trackRhythm.setSelection(intent.getIntExtra("rhythm", 0));
+
+        trackName.setEnabled(false);
+        trackAlbum.setEnabled(false);
+        trackInterpreter.setEnabled(false);
+        trackYear.setEnabled(false);
+        trackLanguage.setEnabled(false);
+        trackRhythm.setEnabled(false);
     }
 }

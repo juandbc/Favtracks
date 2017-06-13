@@ -1,37 +1,38 @@
 <resources>
     <!-- Strings related to activities name -->
-    <string name="app_name">Canciones Favoritas</string>
-    <string name="tracks_list_activity">Lista de canciones</string>
-    <string name="add_track_activity">Agregar canción</string>
-    <string name="track_details_activity">Detalles de la canción</string>
-    <string name="register_activity">Registrar</string>
+    <string name="app_name">FavSongs</string>
+    <string name="tracks_list_activity">Favorite tracks</string>
+    <string name="add_track_activity">Add track</string>
+    <string name="track_details_activity">Track details</string>
+    <string name="register_activity">Sign up</string>
+    <string name="filter_activity">Filter by</string>
 
     <!-- Strings related to login and create account -->
-    <string name="prompt_username">Usuario</string>
-    <string name="prompt_password">Contraseña</string>
-    <string name="action_sign_in_short">Iniciar sesión</string>
-    <string name="action_register">Registrarse</string>
+    <string name="prompt_username">User</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_register">Sign up</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
-    <string name="error_failed_login">Contrasena o usuario inválido</string>
+    <string name="error_failed_login">Bad credentials </string>
     <string name="error_field_required">This field is required</string>
-    <string name="error_add_user">Hubo un error al agregar el usuario</string>
-    <string name="add_user_success">Se agregó el usuario exitosamente</string>
+    <string name="error_add_user">Error adding user</string>
+    <string name="add_user_success">User added successful</string>
 
     <!-- Strings related to tracks list -->
-    <string name="empty_list">Aún no hay canciones agregadas por los usuarios.</string>
-    <string name="no_internet_connection">No hay conexión a internet</string>
-    <string name="button_filter">Filtrar</string>
+    <string name="empty_list">There are not tracks yet.</string>
+    <string name="no_internet_connection">No internet connection</string>
+    <string name="button_filter">Filter</string>
 
     <!-- Strings related to add track, track details and filter-->
-    <string name="name">Nombre</string>
+    <string name="name">Name</string>
     <string name="album">Album</string>
-    <string name="interpreter">Intérprete</string>
-    <string name="year">Año</string>
-    <string name="language">Idioma</string>
-    <string name="rhythm">Ritmo</string>
-    <string name="rating">Calificación</string>
-    <string name="add">agregar canción</string>
+    <string name="interpreter">Interpreter</string>
+    <string name="year">year</string>
+    <string name="language">Language</string>
+    <string name="rhythm">Rhythm</string>
+    <string name="rating">Rating</string>
+    <string name="add">add track</string>
     <string-array name="rhythm_list">
         <item>Balada</item>
         <item>Salsa</item>
@@ -39,9 +40,9 @@
         <item>Vallenato</item>
         <item>Reggaeton</item>
     </string-array>
-    <string name="error_failed_add_track">Hubo un error al agregar la canción</string>
-    <string name="add_track_success">La canción se agregó exitosamente</string>
-    <string name="create_account_head">Crear una cuenta</string>
+    <string name="error_failed_add_track">Error adding track</string>
+    <string name="add_track_success">Track added successful</string>
+    <string name="create_account_head">Create a new account</string>
     <string name="filter_head">Filtrar canciones por</string>
 
     <!-- String related to menus -->

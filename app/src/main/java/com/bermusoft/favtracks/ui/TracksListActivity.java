@@ -26,7 +26,7 @@ import com.bermusoft.favtracks.data.TrackAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaCancionesActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Track>> {
+public class TracksListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Track>> {
 
     private static final String TRACKS_REQUEST_URL = "https://juanbdev.azurewebsites.net/dnt/getTracksList.php";
 
@@ -40,7 +40,6 @@ public class ListaCancionesActivity extends AppCompatActivity implements LoaderM
 
     private TextView emptyListTextView;
 
-    private FloatingActionButton fabAddTrack;
     private LoaderManager loaderManager;
 
     @Override
@@ -53,11 +52,11 @@ public class ListaCancionesActivity extends AppCompatActivity implements LoaderM
         rating = getIntent().getIntExtra("rating", -1);
 
         emptyListTextView = (TextView) findViewById(R.id.emptyListTextView);
-        fabAddTrack = (FloatingActionButton) findViewById(R.id.fabAddTrackButton);
+        FloatingActionButton fabAddTrack = (FloatingActionButton) findViewById(R.id.fabAddTrackButton);
         fabAddTrack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListaCancionesActivity.this, AddTrackActivity.class);
+                Intent intent = new Intent(TracksListActivity.this, AddTrackActivity.class);
                 startActivity(intent);
             }
         });
@@ -72,7 +71,7 @@ public class ListaCancionesActivity extends AppCompatActivity implements LoaderM
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Track track = (Track) parent.getItemAtPosition(position);
-                Intent intent = new Intent(ListaCancionesActivity.this, DetalleCancionActivity.class);
+                Intent intent = new Intent(TracksListActivity.this, DetalleCancionActivity.class);
                 intent.putExtra("name", track.getTrackName());
                 intent.putExtra("album", track.getTrackAlbum());
                 intent.putExtra("interpreter", track.getTrackInterpreter());
@@ -91,6 +90,12 @@ public class ListaCancionesActivity extends AppCompatActivity implements LoaderM
 
         // If there is a network connection, fetch data
         if (networkInfo != null && networkInfo.isConnected()) {
+            Intent intent = getIntent();
+            String aux = intent.getStringExtra("interpreter");
+            interpreter = (aux == null) ? "" : aux;
+            rating = intent.getIntExtra("rating", -1);
+            rhythm = intent.getIntExtra("rhythm", -1);
+
             // Get a reference to the LoaderManager, in order to interact with loaders.
             loaderManager = getLoaderManager();
 

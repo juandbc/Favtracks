@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bermusoft.favtracks.R;
@@ -36,16 +35,11 @@ public class TrackAdapter extends ArrayAdapter<Track> {
 
         TextView name = (TextView) listItemView.findViewById(R.id.trackNameItemTextView);
         TextView interpreterTextView = (TextView) listItemView.findViewById(R.id.interpreterItemTextView);
-        TextView userTextView = (TextView) listItemView.findViewById(R.id.usernameItemTextView);
-
-        RatingBar ratingBar = (RatingBar) listItemView.findViewById(R.id.ratingItemBar);
+        TextView rhythm = (TextView) listItemView.findViewById(R.id.rhythmItemTextView);
 
         name.setText(track.getTrackName());
         interpreterTextView.setText(track.getTrackInterpreter());
-        userTextView.setText(track.getTrackUser());
-
-        ratingBar.setMax(5);
-        ratingBar.setRating(track.getTrackRating());
+        rhythm.setText(getContext().getResources().getStringArray(R.array.rhythm_list)[track.getTrackRhythm()]);
         return listItemView;
     }
 }

@@ -32,10 +32,10 @@ public class HttpManager {
 
     }
 
-    public static List<Track> fetchTrackData(String requestUrl) {
+    static List<Track> fetchTrackData(String requestUrl) {
         // Create URL object
         URL url = createUrl(requestUrl);
-
+        Log.e(LOG_TAG, url.toString());
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
         try {
@@ -45,10 +45,9 @@ public class HttpManager {
         }
 
         // Extract relevant fields from the JSON response and create a list of {@link Track}s
-        List<Track> tracks = extractFeatureFromJson(jsonResponse);
 
         // Return the list of {@link Track}s
-        return tracks;
+        return extractFeatureFromJson(jsonResponse);
     }
 
     /**
@@ -142,7 +141,7 @@ public class HttpManager {
      * Convert the {@link InputStream} into a String which contains the
      * whole JSON response from the server.
      */
-    public static String readFromStream(InputStream inputStream) throws IOException {
+    private static String readFromStream(InputStream inputStream) throws IOException {
         StringBuilder output = new StringBuilder();
         if (inputStream != null) {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
@@ -160,7 +159,7 @@ public class HttpManager {
      * Return a list of {@link Track} objects that has been built up from
      * parsing the given JSON response.
      */
-    public static List<Track> extractFeatureFromJson(String earthquakeJSON) {
+    private static List<Track> extractFeatureFromJson(String earthquakeJSON) {
         if (TextUtils.isEmpty(earthquakeJSON)) {
             return null;
         }

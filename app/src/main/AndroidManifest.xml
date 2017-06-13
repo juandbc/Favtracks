@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.ListaCancionesActivity"
+            android:name=".ui.TracksListActivity"
             android:label="@string/tracks_list_activity" />
         <activity
             android:name=".ui.AddUserActivity"
@@ -37,22 +37,30 @@
         <activity
             android:name=".ui.AddTrackActivity"
             android:label="@string/add_track_activity"
-            android:parentActivityName=".ui.ListaCancionesActivity"
+            android:parentActivityName=".ui.TracksListActivity"
             tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bermusoft.favtracks.ui.ListaCancionesActivity" />
+                android:value="com.bermusoft.favtracks.ui.TracksListActivity" />
         </activity>
         <activity
             android:name=".ui.DetalleCancionActivity"
             android:label="@string/track_details_activity"
-            android:parentActivityName=".ui.ListaCancionesActivity"
+            android:parentActivityName=".ui.TracksListActivity"
             tools:targetApi="jelly_bean">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bermusoft.favtracks.ui.ListaCancionesActivity" />
+                android:value="com.bermusoft.favtracks.ui.TracksListActivity" />
         </activity>
-        <activity android:name=".ui.FilterActivity"></activity>
+        <activity
+            android:name=".ui.FilterActivity"
+            android:label="@string/filter_activity"
+            android:parentActivityName=".ui.TracksListActivity"
+            tools:targetApi="jelly_bean">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.TracksListActivity" />
+        </activity>
     </application>
 
 </manifest>

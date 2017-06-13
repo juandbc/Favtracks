@@ -7,9 +7,12 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bermusoft.favtracks.R;
@@ -42,14 +45,23 @@ public class LoginActivity extends AppCompatActivity {
 
         user = (EditText) findViewById(R.id.usernameLoginEditText);
         password = (EditText) findViewById(R.id.passwordLoginEditText);
+        password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    logIn();
+                }
+                return true;
+            }
+        });
 
-        Button logIn = (Button) findViewById(R.id.log_in_button);
+        final Button logIn = (Button) findViewById(R.id.log_in_button);
         Button register = (Button) findViewById(R.id.register_button);
 
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new UserLoginTask().execute(user.getText().toString(), password.getText().toString());
+                logIn();
             }
         });
 
@@ -62,11 +74,15 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void logIn() {
+        new UserLoginTask().execute(user.getText().toString(), password.getText().toString());
+    }
+
     /**
      * Represents an asynchronous login/registration task used to authenticate
      * the user.
      */
-    public class UserLoginTask extends AsyncTask<String, Void, Boolean> {
+    private class UserLoginTask extends AsyncTask<String, Void, Boolean> {
         private String pass;
         private String username;
 
@@ -105,8 +121,8 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences prefs = getSharedPreferences("favtracksPrefs", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.putString("username", username);
-                editor.commit();
-                Intent intent = new Intent(LoginActivity.this, ListaCancionesActivity.class);
+                editor.apply();
+                Intent intent = new Intent(LoginActivity.this, TracksListActivity.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(LoginActivity.this, getResources().getString(R.string.error_failed_login), Toast.LENGTH_SHORT).show();
